@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Show Info</title>
+  </head>
+  <body class="bg-light">
+    {% load static %}
+    <div class="container text-dark">
+      <h2 class=" mt-5">TV Show {{show.id}}</h2>
+      <a class="fs-4" href="/shows">Go Back</a>
+      <ul class="fs-4 list-unstyled border border-secondary border-3">
+        <li class="my-3">Title: {{show.title}}</li>
+        <li class="my-3">Network: {{show.network.name}}</li>
+        <li class="my-3">Release Date: {{show.rel_date|date:"M d, Y"}}</li>
+        <li class="my-3">Description: {{show.description}}</li>
+      </ul>
+      Last Updated: {{show.updated_at}}
+      <hr>
+      <a class="text-decoration-none" href="/shows/{{show.id}}/edit">&#9997;</a> | 
+      <a class="text-decoration-none" href="/shows/{{show.id}}/destroy">&#10060;</a>
+    </div>
+    <script src="{% static 'js/index.js' %}"></script>
+  </body>
+</html>

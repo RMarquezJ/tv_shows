@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Shows</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+  </head>
+  <body id='body' class="bg-light">
+    <div class="container text-dark">
+      <h1 class="my-5">All Shows</h1>
+      <table class="table text-dark border border-dark border-3">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Network</th>
+            <th scope="col">Release Date</th>
+            <th scope="col">Action<s/th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for show in shows%}
+          <tr>
+            <th scope="row">{{show.id}}</th>
+            <td>{{show.title}}</td>
+            <td>{{show.network.name}}</td>
+            <td>{{show.rel_date|date:"M d, Y"}}</td>
+            <td><a class="text-decoration-none" href="/shows/{{show.id}}">&#128064;</a> | 
+              <a class="text-decoration-none" href="/shows/{{show.id}}/edit">&#9997;</a> | 
+              <a class="text-decoration-none" href="/shows/{{show.id}}/destroy">&#10060;</a>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+      <a class="btn btn-primary" href="/shows/new">Add a New Show</a>
+    </div>
+    <script src="{% static 'js/index.js' %}"></script>
+  </body>
+</html>
