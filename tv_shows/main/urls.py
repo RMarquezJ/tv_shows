@@ -10,6 +10,6 @@ urlpatterns = [
   path('shows/create', views.create),
   path('shows/<showid>', views.info),
   path('shows/<showid>/edit', views.edit),
-  path('shows/<showid>/update', views.editshow),
+  path('shows/<showid>/update', views.update),
   path('shows/<showid>/destroy', views.delete),
 ]

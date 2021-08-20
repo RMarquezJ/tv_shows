@@ -12,11 +12,18 @@
     <div class="container text-dark">
       <h1 class="mt-5">Edit Show {{show.id}}</h1>
       <a class="fs-4" href="/shows">Go Back</a>
+      {% if messages %}
+      <ul class="messages">
+        {%for message in messages%}
+          <li {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</li>
+        {%endfor%}
+      </ul>
+      {% endif%}
       <form action='/shows/{{show.id}}/update' method="post">
         {%csrf_token%}
         <div class="fw-bold form-group my-2">
           <label for="">Title</label>
-          <input type="text" class="form-control" name="tit" aria-describedby="emailHelp" placeholder="{{show.title}}" required>
+          <input type="text" class="form-control" name="tit" aria-describedby="emailHelp" placeholder="{{show.title}}">
         </div>
         <div class="row">
           <div class="fw-bold col form-group my-2">
@@ -30,12 +37,12 @@
           </div>
           <div class="fw-bold col form-group my-2">
             <label for="">Release date</label>
-            <input type="date" class="form-control" name="reldate" aria-describedby="emailHelp" placeholder="{{show.rel_date}}" required>
+            <input type="date" class="form-control" name="reldate" aria-describedby="emailHelp" placeholder="{{show.rel_date}}">
           </div>
         </div>
         <div class="fw-bold form-group my-2">
           <label for="">Description</label>
-          <input type="text" class="form-control" name="des" aria-describedby="emailHelp" placeholder="{{show.description}}" required>
+          <input type="text" class="form-control" name="des" aria-describedby="emailHelp" placeholder="{{show.description}}">
         </div>
         <input type="submit" class="btn btn-primary my-3" value="Update">
       </form>

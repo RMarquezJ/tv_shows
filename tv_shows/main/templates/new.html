@@ -16,11 +16,18 @@
     <div class="container text-dark">
       <h1 class="mt-5">Add a New Show</h1>
       <a class="fs-4" href="/shows">Go Back</a>
+      {% if messages %}
+      <ul class="messages">
+        {%for message in messages%}
+          <li {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</li>
+        {%endfor%}
+      </ul>
+      {% endif%}
       <form action='/shows/create' method="post">
         {%csrf_token%}
         <div class="fw-bold form-group my-2">
           <label for="">Title</label>
-          <input type="text" class="form-control" name="tit" aria-describedby="emailHelp" placeholder="Title name" required>
+          <input type="text" class="form-control" name="tit" aria-describedby="emailHelp" placeholder="Title name">
         </div>
         <div class="row">
           <div class="fw-bold col form-group my-2">
@@ -36,12 +43,12 @@
           </div>
           <div class="fw-bold col form-group my-2">
             <label for="">Release date</label>
-            <input type="date" class="form-control" name="reldate" aria-describedby="emailHelp" placeholder="Date" required>
+            <input type="date" class="form-control" name="reldate" aria-describedby="emailHelp" placeholder="Date">
           </div>
         </div>
         <div class="fw-bold form-group my-2">
           <label for="">Description</label>
-          <input type="text" class="form-control" name="des" aria-describedby="emailHelp" placeholder="Description" required>
+          <input type="text" class="form-control" name="des" aria-describedby="emailHelp" placeholder="Description">
         </div>
         <input type="submit" class="btn btn-primary my-3" value="Add">
       </form>
