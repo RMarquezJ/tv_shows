@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, HttpResponse
 from .models import Users
 from django.contrib import messages
 import bcrypt
+from .decorators import login_required
 
 def register(request):
 
@@ -36,6 +37,7 @@ def register(request):
 
     return redirect('/register/mainpage')
 
+@login_required
 def mainpage(request):
   return render(request, 'mainpage.html')
 
@@ -63,6 +65,7 @@ def login(request):
     messages.success(request, f'Hola {user.name}')
     return redirect('/register/mainpage')
 
+
 def logout(request):
-  request.session['user'] = None
+  del request.session['user']
   return redirect('/register')
